@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Navbar.scss";
 
 const Navbar = () => {
+  const themes = ["valentine", "retro", "forest", "vit"];
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "valentine"
   );
@@ -14,12 +15,15 @@ const Navbar = () => {
       ?.setAttribute("data-theme", currentTheme as string);
   }, [theme]);
 
-  const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setTheme("forest");
-    } else {
-      setTheme("valentine");
-    }
+  // const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.checked) {
+  //     setTheme("forest");
+  //   } else {
+  //     setTheme("valentine");
+  //   }
+  // };
+  const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTheme(e.target.value);
   };
 
   return (
@@ -27,7 +31,7 @@ const Navbar = () => {
       <div className="flex-1">
         <a href="/" className="btn btn-ghost text-xl logo-class">
           <img src="src/assets/n-dark.svg" alt="" />
-          Cart
+          Shopping
         </a>
       </div>
       <div className="flex-none">
@@ -96,7 +100,8 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <label className="cursor-pointer grid place-items-center">
+
+      {/* <label className="cursor-pointer grid place-items-center">
         <input
           type="checkbox"
           className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
@@ -132,10 +137,10 @@ const Navbar = () => {
         >
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
-      </label>
-      {/* <div className="dropdown mb-72">
+      </label> */}
+      <div className="dropdown">
         <div tabIndex={0} role="button" className="btn m-1">
-          Theme
+          Themes
           <svg
             width="12px"
             height="12px"
@@ -148,55 +153,24 @@ const Navbar = () => {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52"
+          className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box"
         >
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Default"
-              value="default"
-            />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Retro"
-              value="retro"
-            />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Cyberpunk"
-              value="cyberpunk"
-            />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Valentine"
-              value="valentine"
-            />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Aqua"
-              value="aqua"
-            />
-          </li>
+          {/* Dynamically generate radio inputs for themes */}
+          {themes.map((themeOption) => (
+            <li key={themeOption}>
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                aria-label={themeOption}
+                value={themeOption}
+                checked={theme === themeOption}
+                onChange={handleThemeChange}
+              />
+            </li>
+          ))}
         </ul>
-      </div> */}
+      </div>
     </div>
   );
 };
