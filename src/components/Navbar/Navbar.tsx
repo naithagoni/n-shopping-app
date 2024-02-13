@@ -2,7 +2,28 @@ import { useEffect, useState } from "react";
 import "./Navbar.scss";
 
 const Navbar = () => {
-  const themes = ["valentine", "retro", "forest", "vit"];
+  const themes = [
+    {
+      name: "valentine",
+      isDisabled: false,
+      ariaLabel: "Valentine",
+    },
+    {
+      name: "retro",
+      isDisabled: false,
+      ariaLabel: "Retro",
+    },
+    {
+      name: "forest",
+      isDisabled: false,
+      ariaLabel: "Forest",
+    },
+    {
+      name: "vit",
+      isDisabled: true,
+      ariaLabel: "Vit",
+    },
+  ];
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "valentine"
   );
@@ -28,12 +49,20 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100">
-      <div className="flex-1">
+      <div>
         <a href="/" className="btn btn-ghost text-xl logo-class">
-          <img src="src/assets/n-dark.svg" alt="" />
+          <img src="src/assets/n-dark.svg" alt="logo" />
           Shopping
         </a>
       </div>
+      <div className="form-control flex-1">
+        <input
+          type="text"
+          placeholder="Search"
+          className="input input-bordered w-full"
+        />
+      </div>
+      <button className="btn btn-ghost">Home</button>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -157,14 +186,15 @@ const Navbar = () => {
         >
           {/* Dynamically generate radio inputs for themes */}
           {themes.map((themeOption) => (
-            <li key={themeOption}>
+            <li key={themeOption.name}>
               <input
                 type="radio"
                 name="theme-dropdown"
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                aria-label={themeOption}
-                value={themeOption}
-                checked={theme === themeOption}
+                aria-label={themeOption.ariaLabel}
+                value={themeOption.name}
+                checked={theme === themeOption.name}
+                disabled={themeOption.isDisabled}
                 onChange={handleThemeChange}
               />
             </li>
