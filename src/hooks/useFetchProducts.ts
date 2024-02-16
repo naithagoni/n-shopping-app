@@ -2,25 +2,25 @@ import { useCallback, useEffect, useState } from "react";
 import { AxiosError } from "axios";
 import useAbortController from "./useAbortController";
 import axiosInstance from "../services/axiosInstance";
-import { Product } from "../types/Product";
+import { IProducts } from "../types/IProduct";
 
 const useFetchProducts = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [products, setProducts] = useState<IProducts>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<AxiosError>();
   const { getAbortSignal } = useAbortController();
 
   const fetchProducts = useCallback(async () => {
-    setLoading(true);
+    setIsLoading(true);
     try {
-      const products = await axiosInstance.get("/products", {
+      const productList = await axiosInstance.get("/products", {
         signal: getAbortSignal(),
       });
-      setProducts(products.data);
+      setProducts(productList.data);
     } catch (err) {
       setError(err as AxiosError);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, [getAbortSignal]);
 
@@ -28,7 +28,7 @@ const useFetchProducts = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  return { products, loading, error };
+  return { products, isLoading, error, refetch: fetchProducts };
 };
 
 export default useFetchProducts;
