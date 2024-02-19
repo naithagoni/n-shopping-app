@@ -1,6 +1,5 @@
 import useFetchProducts from "../../hooks/useFetchProducts";
 import Card from "../../components/Card/Card";
-import { IProducts } from "../../types/IProduct";
 
 const Products = () => {
   const { products, error, isLoading } = useFetchProducts();
@@ -38,11 +37,7 @@ const Products = () => {
       </>
     );
   }
-  return (
-    <>
-      <Card products={products as IProducts} />
-    </>
-  );
+  return <>{products && <Card products={products} />}</>;
 };
 
 export default Products;

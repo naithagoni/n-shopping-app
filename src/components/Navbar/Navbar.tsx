@@ -48,7 +48,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 z-100 fixed">
       <div>
         <a href="/" className="btn btn-ghost text-xl logo-class">
           <img src="src/assets/n-dark.svg" alt="logo" />
