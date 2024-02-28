@@ -48,11 +48,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 z-100 fixed">
+    <nav className="navbar bg-base-100 z-100 fixed">
       <div>
         <a href="/" className="btn btn-ghost text-xl logo-class">
           <img src="src/assets/n-dark.svg" alt="logo" />
-          Shopping
+          {import.meta.env.VITE_APP_TITLE}
         </a>
       </div>
       <div className="form-control flex-1">
@@ -63,6 +63,7 @@ const Navbar = () => {
         />
       </div>
       <button className="btn btn-ghost">Home</button>
+      <div className="divider divider-horizontal mt-4 mb-4 ml-0 mr-0"></div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -201,7 +202,7 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </nav>
   );
 };
 

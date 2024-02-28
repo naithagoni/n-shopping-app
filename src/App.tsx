@@ -1,14 +1,16 @@
 import Navbar from "./components/Navbar/Navbar";
 import Products from "./pages/Products/Products";
+// import Home from "./pages/Home/Home";
 import "./App.scss";
 
 function App() {
   return (
     <>
       <Navbar />
-      <div className="pt-16 pl-6 pr-6 pb-6">
+      <main>
         <Products />
-      </div>
+        {/* <Home /> */}
+      </main>
     </>
   );
 }
