@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className="diff aspect-[16/9] px-16 py-16">
+    <div className="diff aspect-[16/9] px-8 py-16">
       <div className="diff-item-1">
         <div className="bg-primary text-primary-content text-9xl font-black grid place-content-center">
           N-SHOP

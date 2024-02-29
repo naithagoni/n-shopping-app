@@ -19,10 +19,7 @@ const Card: React.FC<CardProps> = ({ products }) => {
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.products.map((product) => (
-            <div
-              key={product.id}
-              className="card glass bg-base-100 shadow-xl"
-            >
+            <div key={product.id} className="card glass bg-base-100 shadow-xl">
               {/* <span className="indicator-item badge badge-primary">new</span> */}
               <div className="carousel rounded-box rounded-b-none w-full">
                 {product.images.map((image, imageIndex) => {
@@ -65,11 +62,18 @@ const Card: React.FC<CardProps> = ({ products }) => {
                 })}
               </div>
               <div className="card-body">
+                <h2 className="card-title">{product.title}</h2>
+                <p className="font-title text-xs font-light">
+                  {product.description}
+                </p>
                 <div className="flex justify-between">
-                  <h2 className="card-title">{product.title}</h2>
-                  <span className="font-title text-xl font-light xl:text-xl">€{product.discountPercentage}</span>
+                  <span className="font-title text-xl font-light xl:text-xl">
+                    €{product.discountPercentage}
+                  </span>
+                  <span className="font-title text-xs font-light">
+                    Available: {product.stock}
+                  </span>
                 </div>
-                <p className="font-title text-xs font-light">{product.description}</p>
                 <div className="card-actions">
                   <button className="btn btn-primary w-full">Add to bag</button>
                 </div>

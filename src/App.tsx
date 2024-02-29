@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar/Navbar";
-import Products from "./pages/Products/Products";
-// import Home from "./pages/Home/Home";
+import Home from "./pages/Home/Home";
 import "./App.scss";
 
 function App() {
@@ -8,8 +7,7 @@ function App() {
     <>
       <Navbar />
       <main>
-        <Products />
-        {/* <Home /> */}
+        <Home />
       </main>
     </>
   );
