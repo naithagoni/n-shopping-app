@@ -1,40 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 
-import App from "./App.tsx";
-import HomePage from "./pages/Home/HomePage.tsx";
-import ProductsPage from "./pages/Products/ProductsPage.tsx";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.tsx";
-
+import router from "./RouterLayout";
 import "./index.scss";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "",
-//     element: <App />,
-//     // errorElement: <NotFound />,
-//   },
-//   {
-//     path: "/products",
-//     element: <Products />,
-//   },
-//   {
-//     path: "*",
-//     element: <NotFound />,
-//   },
-// ]);
-const router = createBrowserRouter([
-  {
-    path: "",
-    element: <App />,
-    children: [
-      { path: "/", element: <HomePage /> },
-      { path: "/products", element: <ProductsPage /> },
-    ],
-  },
-  { path: "*", element: <NotFoundPage /> },
-]);
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 if (process.env.NODE_ENV === "development") {
