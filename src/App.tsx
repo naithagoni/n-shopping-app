@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home/Home";
+import { Outlet } from "react-router-dom";
 import "./App.scss";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <>
       <Navbar />
       <main>
-        <Home />
+        <Outlet />
       </main>
     </>
   );

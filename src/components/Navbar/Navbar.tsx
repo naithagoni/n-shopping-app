@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-import "./Navbar.scss";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const themes = [
@@ -50,26 +49,39 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar bg-base-100 z-100 fixed">
+      <nav className="navbar bg-base-100 z-100 shadow-xl fixed">
         <div>
-          <Link to="/" className="btn btn-ghost text-xl logo-class hover:bg-transparent">
+          <NavLink
+            to="/"
+            className="btn btn-ghost text-xl logo-class hover:bg-transparent"
+          >
             <img src="src/assets/n-dark.svg" alt="logo" />
             {import.meta.env.VITE_APP_TITLE}
-          </Link>
+          </NavLink>
         </div>
-        <div className="form-control flex-1">
+        <div className="form-control flex-1 mr-2">
           <input
             type="text"
             placeholder="Search"
             className="input input-bordered w-full"
           />
         </div>
-        <Link to="/" className="btn btn-ghost">
+        <NavLink
+          to="/"
+          className={({ isActive }) => {
+            return isActive ? "btn btn-secondary" : "btn btn-ghost";
+          }}
+        >
           Home
-        </Link>
-        <Link to="/products" className="btn btn-ghost">
+        </NavLink>
+        <NavLink
+          to="/products"
+          className={({ isActive }) => {
+            return isActive ? "btn btn-secondary" : "btn btn-ghost";
+          }}
+        >
           Products
-        </Link>
+        </NavLink>
         <div className="divider divider-horizontal mt-4 mb-4 ml-0 mr-0"></div>
         <div className="flex-none">
           <div className="dropdown dropdown-end">
@@ -216,7 +228,6 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <Outlet />
     </>
   );
 };

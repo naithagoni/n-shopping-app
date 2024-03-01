@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <div className="px-16 py-16">
       <div className="mockup-browser border bg-base-300">
@@ -16,4 +16,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

@@ -67,11 +67,11 @@ const Card: React.FC<CardProps> = ({ products }) => {
                   {product.description}
                 </p>
                 <div className="flex justify-between">
-                  <span className="font-title text-xl font-light xl:text-xl">
+                  <span className="font-title text-xl font-medium xl:text-xl">
                     €{product.discountPercentage}
                   </span>
                   <span className="font-title text-xs font-light">
-                    Available: {product.stock}
+                    Avlb: {product.stock}
                   </span>
                 </div>
                 <div className="card-actions">

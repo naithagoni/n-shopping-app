@@ -1,4 +1,4 @@
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="diff aspect-[16/9] px-8 py-16">
       <div className="diff-item-1">
@@ -16,4 +16,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

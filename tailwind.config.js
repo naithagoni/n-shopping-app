@@ -2,9 +2,22 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      // Customizing your theme
+      // fontFamily: {
+      //   // Adds a new `font-display` class, After adding this to your theme you can use it just like any other font-{family} utility: <h1 class="font-display">
+      //   display: 'Oswald, ui-serif',
+      // },
+      zIndex: {
+        100: "100",
+      },
+    },
   },
-  plugins: [require("@tailwindcss/typography"), require('@tailwindcss/aspect-ratio'), require("daisyui")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+    require("daisyui"),
+  ],
   daisyui: {
     themes: [
       "valentine",
