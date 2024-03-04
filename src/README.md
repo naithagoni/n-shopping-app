@@ -1,7 +1,6 @@
 
 
   ![alt text](../images/redux_architecture.png "Architecture")
-  Underlined Heading 1
 
   - <ins>**useDispatch**</ins> is used to dispatch actions to the Redux store. It returns the dispatch function from the store, which you can use to send actions to the store. Using useDispatch: When a user interacts with the UI (e.g., clicking a button), the component can dispatch an action to the Redux store using the useDispatch hook. This action represents the intent to update the state.
   - <ins>**useSelector**</ins> is used to access the Redux store's state within a component. It takes a selector function as an argument, which extracts the desired piece of state from the store. The useSelector hook from react-redux automatically subscribes to the Redux store's state updates. Components that need to access the updated state use the useSelector hook. This hook allows them to select the part of the state they are interested in. When the state changes, these components will re-render with the new state.
