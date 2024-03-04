@@ -68,7 +68,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) => {
-            return isActive ? "btn btn-secondary" : "btn btn-ghost";
+            return isActive ? "btn btn-sm" : "btn btn-sm btn-ghost";
           }}
         >
           Home
@@ -76,7 +76,7 @@ const Navbar = () => {
         <NavLink
           to="/products"
           className={({ isActive }) => {
-            return isActive ? "btn btn-secondary" : "btn btn-ghost";
+            return isActive ? "btn btn-sm" : "btn btn-sm btn-ghost";
           }}
         >
           Products

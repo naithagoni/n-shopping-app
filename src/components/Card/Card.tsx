@@ -89,7 +89,7 @@ const Card: React.FC<CardProps> = ({ products }) => {
                   );
                 })}
               </div>
-              <div className="card-body">
+              <div className="card-body justify-between">
                 <h4 className="text-sm font-normal">{product.brand}</h4>
                 <h2 className="card-title font-title">{product.title}</h2>
                 <div className="flex items-center justify-between">
@@ -115,7 +115,7 @@ const Card: React.FC<CardProps> = ({ products }) => {
                     className="btn btn-primary w-full"
                     onClick={() => addToCart(product)}
                   >
-                    Add to cart
+                    Add to bag
                   </button>
                 </div>
               </div>
