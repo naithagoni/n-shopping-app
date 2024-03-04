@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { add } from "../../redux/cartSlice";
+import { addProductToBag } from "../../redux/features/cart/cartSlice";
 import { IProducts, IProduct } from "../../types/IProduct";
 
 interface CardProps {
@@ -18,9 +18,9 @@ const Card: React.FC<CardProps> = ({ products }) => {
     setActiveIndexes(() => ({ [id]: index }));
   };
 
-  const addToCart = (product: IProduct) => {
+  const addToBag = (product: IProduct) => {
     console.log("PRODUCT: ", product);
-    dispatch(add(product));
+    dispatch(addProductToBag(product));
   };
 
   return (
@@ -113,7 +113,7 @@ const Card: React.FC<CardProps> = ({ products }) => {
                 <div className="card-actions">
                   <button
                     className="btn btn-primary w-full"
-                    onClick={() => addToCart(product)}
+                    onClick={() => addToBag(product)}
                   >
                     Add to bag
                   </button>
