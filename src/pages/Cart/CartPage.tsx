@@ -1,8 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/cartStore";
+import { removeProductFromCart } from "../../redux/features/cart/cartSlice";
 
 const CartPage = () => {
-  const cartState = useSelector((state: RootState) => state.cart);
+  const products = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
+
+  const removeProduct = (id: number) => {
+    dispatch(removeProductFromCart(id));
+  };
 
   return (
     <>
@@ -27,19 +33,103 @@ const CartPage = () => {
             />
           </svg>
           <span className="badge badge-sm badge-accent indicator-item">
-            {cartState.length}
+            {products.length}
           </span>
         </div>
       </div>
       <div
         tabIndex={0}
-        className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
+        className="fixed mt-3 z-[1] card dropdown-content bg-base-100 shadow-xl w-screen max-w-md"
       >
-        <div className="card-body">
-          <span className="font-bold text-lg">{cartState.length} Items</span>
-          <span className="text-info">Subtotal: $999</span>
-          <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+        <div className="card-body px-6 py-6">
+          <div className="overflow-y-auto ">
+            <div className="flex items-start justify-between">
+              <h2 className="font-bold text-lg">Shopping cart</h2>
+            </div>
+            <div className="mt-8">
+              <div className="flow-root">
+                <ul role="list" className="-my-6 divide-y divide-gray-300">
+                  {products.map((product) => (
+                    <li key={product.id} className="flex py-6">
+                      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-300">
+                        <img
+                          src={product.thumbnail}
+                          className="h-full w-full object-cover object-center"
+                        />
+                      </div>
+
+                      <div className="ml-4 flex flex-1 flex-col">
+                        <div className="flex flex-1 items-center justify-between text-base font-medium">
+                          <h3>
+                            <a href="#">{product.title}</a>
+                          </h3>
+
+                          <div className="flex mr-1">
+                            <select
+                              className="select select-bordered rounded-md select-sm w-full max-w-xs"
+                              defaultValue="1"
+                            >
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="flex flex-row self-start mt-1 text-sm text-gray-500">
+                          <p className="pr-2">Black</p>
+                          <p className="pl-2 border-l border-gray-400">Small</p>
+                        </div>
+                        <div className="text-base font-medium">
+                          <p>€{product.discountPercentage}</p>
+                        </div>
+
+                        <div className="flex flex-1 items-end justify-between text-sm mt-4">
+                          <p className="text-gray-500">Qty: 1</p>
+                          <div className="flex">
+                            <button
+                              type="button"
+                              className="font-medium text-indigo-600 hover:text-indigo-500"
+                              onClick={() => removeProduct(product.id)}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-300 px-6 py-6">
+            <div className="flex justify-between text-base font-medium text-gray-900">
+              <p>Subtotal</p>
+              <div>
+                <p>€{products.length ? 262.0 : 0.0}</p>
+              </div>
+            </div>
+            <p className="mt-0.5 text-sm text-gray-500">
+              Shipping and taxes calculated at checkout.
+            </p>
+            <div className="mt-6">
+              <a
+                href="#"
+                className="btn btn-primary flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium shadow-sm"
+              >
+                Checkout
+              </a>
+            </div>
+            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+              <p>
+                or{" "}
+                <button type="button" className="font-medium text-info">
+                  Continue Shopping
+                  <span aria-hidden="true"> &rarr;</span>
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </div>

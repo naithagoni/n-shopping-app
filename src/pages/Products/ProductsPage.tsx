@@ -1,10 +1,26 @@
-import useFetchProducts from "../../hooks/useFetchProducts";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getProducts,
+  selectProducts,
+} from "../../redux/features/products/productsSlice";
+// import useFetchProducts from "../../hooks/useFetchProducts";
+import { AppDispatch } from "../../redux/cartStore";
 import Card from "../../components/Card/Card";
 
 const ProductsPage = () => {
-  const { products, error, isLoading } = useFetchProducts();
+  // const { products, error, isLoading } = useFetchProducts();
 
-  if (isLoading) {
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  // Using Redux Thunk
+  const { products, loading, error } = useSelector(selectProducts);
+
+  if (loading === "pending") {
     return (
       <>
         <span className="loading loading-ring loading-xs"></span>
@@ -15,29 +31,35 @@ const ProductsPage = () => {
     );
   }
 
-  if (error) {
+  if (loading === "failed") {
     return (
       <>
-        <div role="alert" className="alert alert-error">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="stroke-current shrink-0 h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span>Error! {error.message}</span>
+        <div role="alert" className="alert alert-error px-4 py-16 mx-16">
+          <div className="flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+
+            <div>
+              <span>Error! {error}</span>
+            </div>
+          </div>
         </div>
       </>
     );
   }
-  return <>{products && <Card products={products} />}</>;
+
+  return <>{loading === "succeeded" && <Card products={products} />}</>;
 };
 
 export default ProductsPage;

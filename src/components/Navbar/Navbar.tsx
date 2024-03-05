@@ -62,13 +62,13 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-md"
           />
         </div>
         <NavLink
           to="/"
           className={({ isActive }) => {
-            return isActive ? "btn btn-sm" : "btn btn-sm btn-ghost";
+            return isActive ? "btn btn-sm rounded-md" : "btn btn-sm btn-ghost rounded-md";
           }}
         >
           Home
@@ -76,7 +76,7 @@ const Navbar = () => {
         <NavLink
           to="/products"
           className={({ isActive }) => {
-            return isActive ? "btn btn-sm" : "btn btn-sm btn-ghost";
+            return isActive ? "btn btn-sm rounded-md" : "btn btn-sm btn-ghost rounded-md";
           }}
         >
           Products
@@ -157,7 +157,7 @@ const Navbar = () => {
       </svg>
     </label> */}
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn m-1">
+          <div tabIndex={0} role="button" className="btn m-1 rounded-md">
             Themes
             <svg
               width="12px"
@@ -171,7 +171,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box"
+            className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-md"
           >
             {/* Dynamically generate radio inputs for themes */}
             {themes.map((themeOption) => (
