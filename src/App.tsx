@@ -10,7 +10,7 @@ function App() {
     <>
       <Provider store={cartStore}>
         <Navbar />
-        <main>
+        <main className="px-6 pt-20 pb-16">
           <Outlet />
         </main>
       </Provider>

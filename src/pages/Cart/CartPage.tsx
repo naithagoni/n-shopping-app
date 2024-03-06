@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { RootState } from "../../redux/cartStore";
 import { removeProductFromCart } from "../../redux/features/cart/cartSlice";
 
@@ -124,10 +125,10 @@ const CartPage = () => {
             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
               <p>
                 or{" "}
-                <button type="button" className="font-medium text-info">
+                <Link to="/products" className="font-medium text-info">
                   Continue Shopping
                   <span aria-hidden="true"> &rarr;</span>
-                </button>
+                </Link>
               </p>
             </div>
           </div>

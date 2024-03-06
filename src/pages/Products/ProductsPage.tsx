@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getProducts,
+  fetchProducts,
   selectProducts,
 } from "../../redux/features/products/productsSlice";
 // import useFetchProducts from "../../hooks/useFetchProducts";
@@ -14,7 +14,7 @@ const ProductsPage = () => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   // Using Redux Thunk
@@ -34,7 +34,7 @@ const ProductsPage = () => {
   if (loading === "failed") {
     return (
       <>
-        <div role="alert" className="alert alert-error px-4 py-16 mx-16">
+        <div role="alert" className="alert alert-error mt-6">
           <div className="flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"

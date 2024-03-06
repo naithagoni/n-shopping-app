@@ -23,15 +23,15 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getProducts.pending, (state) => {
+    builder.addCase(fetchProducts.pending, (state) => {
       state.products = [];
       state.loading = "pending";
     });
-    builder.addCase(getProducts.fulfilled, (state, { payload }) => {
+    builder.addCase(fetchProducts.fulfilled, (state, { payload }) => {
       state.products = payload;
       state.loading = "succeeded";
     });
-    builder.addCase(getProducts.rejected, (state, action) => {
+    builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = "failed";
       state.error = action.error.message ?? "Unknown error";
     });
@@ -39,11 +39,11 @@ export const productsSlice = createSlice({
 });
 
 // Create the thunk
-export const getProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (_, thunkAPI) => {
     try {
-      const productList = await axiosInstance.get("/productss");
+      const productList = await axiosInstance.get("/products");
       return productList.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({
