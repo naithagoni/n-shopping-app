@@ -7,6 +7,7 @@ import {
 // import useFetchProducts from "../../hooks/useFetchProducts";
 import { AppDispatch } from "../../redux/cartStore";
 import Card from "../../components/Card/Card";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const ProductsPage = () => {
   // const { products, error, isLoading } = useFetchProducts();
@@ -21,14 +22,7 @@ const ProductsPage = () => {
   const { products, loading, error } = useSelector(selectProducts);
 
   if (loading === "pending") {
-    return (
-      <>
-        <span className="loading loading-ring loading-xs"></span>
-        <span className="loading loading-ring loading-sm"></span>
-        <span className="loading loading-ring loading-md"></span>
-        <span className="loading loading-ring loading-lg"></span>
-      </>
-    );
+    return <LoadingSpinner />;
   }
 
   if (loading === "failed") {
@@ -51,7 +45,7 @@ const ProductsPage = () => {
             </svg>
 
             <div>
-              <span>Error! {error}</span>
+              <span>Error! {error?.error.message}</span>
             </div>
           </div>
         </div>

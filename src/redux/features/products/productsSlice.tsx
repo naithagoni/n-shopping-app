@@ -3,19 +3,25 @@ import {
   createSelector,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
+import axios from "axios";
 import axiosInstance from "../../../services/axiosInstance";
 import { IProduct } from "../../../types/IProduct";
+
+interface ErrorState {
+  message: string;
+  status: string | number;
+}
 
 interface ProductsState {
   products: IProduct[];
   loading: "idle" | "pending" | "succeeded" | "failed";
-  error: string;
+  error: ErrorState | null;
 }
 
 const initialState = {
   products: [] as Array<IProduct>,
   loading: "idle",
-  error: "",
+  error: null,
 } as ProductsState;
 
 export const productsSlice = createSlice({
@@ -33,7 +39,7 @@ export const productsSlice = createSlice({
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = "failed";
-      state.error = action.error.message ?? "Unknown error";
+      state.error = action.payload as ErrorState;
     });
   },
 });
@@ -45,10 +51,18 @@ export const fetchProducts = createAsyncThunk(
     try {
       const productList = await axiosInstance.get("/products");
       return productList.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue({
-        message: (error as Error).message ?? "Unknown error",
-      });
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const errorState: ErrorState = {
+          message: err.message,
+          status: err.response?.status || "Unknown",
+        };
+        return thunkAPI.rejectWithValue({
+          error: errorState,
+        });
+      } else {
+        throw err;
+      }
     }
   }
 );

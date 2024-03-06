@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import CartPage from "../../pages/Cart/CartPage";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Navbar = () => {
   const themes = [
@@ -58,17 +59,13 @@ const Navbar = () => {
           <img src="src/assets/n-dark.svg" alt="logo" />
           {import.meta.env.VITE_APP_TITLE}
         </NavLink>
-        <div className="form-control flex-1 mr-2">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-full rounded-md"
-          />
-        </div>
+        <SearchBar />
         <NavLink
           to="/"
           className={({ isActive }) => {
-            return isActive ? "btn btn-sm rounded-md" : "btn btn-sm btn-ghost rounded-md";
+            return isActive
+              ? "btn btn-sm rounded-md"
+              : "btn btn-sm btn-ghost rounded-md";
           }}
         >
           Home
@@ -76,7 +73,9 @@ const Navbar = () => {
         <NavLink
           to="/products"
           className={({ isActive }) => {
-            return isActive ? "btn btn-sm rounded-md" : "btn btn-sm btn-ghost rounded-md";
+            return isActive
+              ? "btn btn-sm rounded-md"
+              : "btn btn-sm btn-ghost rounded-md";
           }}
         >
           Products
