@@ -10,6 +10,7 @@ import { AppDispatch } from "../../redux/cartStore";
 import Card from "../../components/Card/Card";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import { ILoadingState } from "../../interfaces/IProduct";
 
 const ProductsPage = () => {
   // const { products, error, isLoading } = useFetchProducts();
@@ -23,15 +24,17 @@ const ProductsPage = () => {
   // Using Redux Thunk
   const { products, loading, error } = useSelector(selectProducts);
 
-  if (loading === "pending") {
+  if (loading === ILoadingState.PENDING) {
     return <LoadingSpinner />;
   }
 
-  if (loading === "failed") {
+  if (loading === ILoadingState.ERROR) {
     return <ErrorPage error={error.error} />;
   }
 
-  return <>{loading === "succeeded" && <Card products={products} />}</>;
+  return (
+    <>{loading === ILoadingState.SUCCESS && <Card products={products} />}</>
+  );
 };
 
 export default ProductsPage;

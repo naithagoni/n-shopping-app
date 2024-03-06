@@ -5,12 +5,16 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import axiosInstance from "../../../services/axiosInstance";
-import { IProduct, IProductsState } from "../../../interfaces/IProduct";
+import {
+  ILoadingState,
+  IProduct,
+  IProductsState,
+} from "../../../interfaces/IProduct";
 import { IError } from "../../../interfaces/IError";
 
 const initialState = {
   products: [] as Array<IProduct>,
-  loading: "idle",
+  loading: ILoadingState.IDLE,
   error: null,
 } as IProductsState;
 
@@ -21,14 +25,14 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.products = [];
-      state.loading = "pending";
+      state.loading = ILoadingState.PENDING;
     });
     builder.addCase(fetchProducts.fulfilled, (state, { payload }) => {
       state.products = payload;
-      state.loading = "succeeded";
+      state.loading = ILoadingState.SUCCESS;
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
-      state.loading = "failed";
+      state.loading = ILoadingState.ERROR;
       state.error = action.payload as IError;
     });
   },

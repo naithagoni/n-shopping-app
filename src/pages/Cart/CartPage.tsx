@@ -1,14 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../redux/cartStore";
-import { removeProductFromCart } from "../../redux/features/cart/cartSlice";
+import {
+  decrementQty,
+  incrementQty,
+  removeProductFromCart,
+} from "../../redux/features/cart/cartSlice";
 
 const CartPage = () => {
   const products = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
+  const totalPrice = products.reduce((acc, currentItem) => {
+    return acc + +currentItem.discountPercentage;
+  }, 0);
+
   const removeProduct = (id: number) => {
     dispatch(removeProductFromCart(id));
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleIncrementQty = (id: number) => {
+    dispatch(incrementQty(id));
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleDecrementQty = (id: number) => {
+    dispatch(decrementQty(id));
   };
 
   return (
@@ -108,7 +126,8 @@ const CartPage = () => {
             <div className="flex justify-between text-base font-medium text-gray-900">
               <p>Subtotal</p>
               <div>
-                <p>€{products.length ? 262.0 : 0.0}</p>
+                {products.length === 0 && <p>€0.0</p>}
+                {products.length >= 1 && <p>€{totalPrice.toFixed(2)}</p>}
               </div>
             </div>
             <p className="mt-0.5 text-sm text-gray-500">

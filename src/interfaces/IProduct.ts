@@ -19,6 +19,7 @@ export interface IProduct {
   images: string[];
   rating: string;
   stock: number;
+  qty?: number;
 }
 
 // interface Rating {
@@ -26,8 +27,15 @@ export interface IProduct {
 //   count: number;
 // };
 
+export enum ILoadingState {
+  IDLE = "idle",
+  PENDING = "pending",
+  SUCCESS = "success",
+  ERROR = "error",
+}
+
 export interface IProductsState {
   products: IProduct[];
-  loading: "idle" | "pending" | "succeeded" | "failed";
+  loading: ILoadingState;
   error: IError | null;
 }
