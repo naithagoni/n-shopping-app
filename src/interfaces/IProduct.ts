@@ -1,11 +1,13 @@
-export type IProducts = {
+import { IError } from "./IError";
+
+export interface IProducts {
   limit: number;
-  products:IProduct[];
+  products: IProduct[];
   skip: number;
   total: number;
-};
+}
 
-export type IProduct = {
+export interface IProduct {
   id: number;
   title: string;
   description: string;
@@ -17,9 +19,15 @@ export type IProduct = {
   images: string[];
   rating: string;
   stock: number;
-};
+}
 
-// type Rating = {
+// interface Rating {
 //   rate: string;
 //   count: number;
 // };
+
+export interface IProductsState {
+  products: IProduct[];
+  loading: "idle" | "pending" | "succeeded" | "failed";
+  error: IError | null;
+}

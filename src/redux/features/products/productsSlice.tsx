@@ -5,24 +5,14 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import axiosInstance from "../../../services/axiosInstance";
-import { IProduct } from "../../../types/IProduct";
-
-interface ErrorState {
-  message: string;
-  status: string | number;
-}
-
-interface ProductsState {
-  products: IProduct[];
-  loading: "idle" | "pending" | "succeeded" | "failed";
-  error: ErrorState | null;
-}
+import { IProduct, IProductsState } from "../../../interfaces/IProduct";
+import { IError } from "../../../interfaces/IError";
 
 const initialState = {
   products: [] as Array<IProduct>,
   loading: "idle",
   error: null,
-} as ProductsState;
+} as IProductsState;
 
 export const productsSlice = createSlice({
   name: "products",
@@ -39,7 +29,7 @@ export const productsSlice = createSlice({
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = "failed";
-      state.error = action.payload as ErrorState;
+      state.error = action.payload as IError;
     });
   },
 });
@@ -53,7 +43,7 @@ export const fetchProducts = createAsyncThunk(
       return productList.data;
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        const errorState: ErrorState = {
+        const errorState: IError = {
           message: err.message,
           status: err.response?.status || "Unknown",
         };
