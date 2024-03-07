@@ -35,7 +35,12 @@ export enum ILoadingState {
 }
 
 export interface IProductsState {
-  products: IProduct[];
+  initProducts: IProducts;
+  loading: ILoadingState;
+  error: IError | null;
+}
+export interface IFilteredProductsState {
+  initFilteredProducts: IProducts;
   loading: ILoadingState;
   error: IError | null;
 }

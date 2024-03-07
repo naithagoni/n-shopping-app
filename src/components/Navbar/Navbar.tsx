@@ -178,7 +178,7 @@ const Navbar = () => {
                 <input
                   type="radio"
                   name="theme-dropdown"
-                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  className="theme-controller btn btn-sm btn-block btn-ghost rounded-md justify-start"
                   aria-label={themeOption.ariaLabel}
                   value={themeOption.name}
                   checked={theme === themeOption.name}

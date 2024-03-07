@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { RootState } from "../../redux/cartStore";
+import { RootState } from "../../redux/store";
 import {
   decrementQty,
   incrementQty,
@@ -8,7 +8,7 @@ import {
 } from "../../redux/features/cart/cartSlice";
 
 const CartPage = () => {
-  const products = useSelector((state: RootState) => state.cart);
+  const products = useSelector((state: RootState) => state.cartStore);
   const dispatch = useDispatch();
 
   const totalPrice = products.reduce((acc, currentItem) => {

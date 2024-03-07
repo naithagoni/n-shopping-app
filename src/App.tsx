@@ -2,13 +2,13 @@ import Navbar from "./components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import { cartStore } from "./redux/cartStore";
+import { Store } from "./redux/store";
 import "./App.scss";
 
 function App() {
   return (
     <>
-      <Provider store={cartStore}>
+      <Provider store={Store}>
         <Navbar />
         <main className="px-6 pt-20 pb-16">
           <Outlet />

@@ -8,15 +8,21 @@ import axiosInstance from "../../../services/axiosInstance";
 import {
   ILoadingState,
   IProduct,
+  IProducts,
   IProductsState,
 } from "../../../interfaces/IProduct";
 import { IError } from "../../../interfaces/IError";
 
-const initialState = {
-  products: [] as Array<IProduct>,
+const initialState: IProductsState = {
+  initProducts: {
+    limit: 0,
+    products: [] as IProduct[],
+    skip: 0,
+    total: 0,
+  } as IProducts,
   loading: ILoadingState.IDLE,
   error: null,
-} as IProductsState;
+};
 
 export const productsSlice = createSlice({
   name: "products",
@@ -24,16 +30,16 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
-      state.products = [];
+      state.initProducts.products = [];
       state.loading = ILoadingState.PENDING;
     });
     builder.addCase(fetchProducts.fulfilled, (state, { payload }) => {
-      state.products = payload;
+      state.initProducts = payload;
       state.loading = ILoadingState.SUCCESS;
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
-      state.loading = ILoadingState.ERROR;
       state.error = action.payload as IError;
+      state.loading = ILoadingState.ERROR;
     });
   },
 });
@@ -62,9 +68,9 @@ export const fetchProducts = createAsyncThunk(
 );
 
 export const selectProducts = createSelector(
-  (state) => state.products.products,
-  (state) => state.products.loading,
-  (state) => state.products.error,
+  (state) => state.productsStore.initProducts, // productsStore refers to the slice name defined in your Redux store.
+  (state) => state.productsStore.loading,
+  (state) => state.productsStore.error,
   (products, loading, error) => ({
     products,
     loading,
