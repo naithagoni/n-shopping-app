@@ -7,7 +7,7 @@
   - <ins>**Reducers:**</ins> Reducers specify how the state should change in response to dispatched actions. They take the current state and an action as arguments, and return a new state.
     - Reducers are used to update the state in a predictable way based on the type of action dispatched.
     - They should not modify the existing state directly but instead return a new state object.
-  - Slices are a feature introduced by Redux Toolkit to group together related reducer logic and action creators for a specific part of the state. They encapsulate the reducer function and action creators for a particular slice of the state.
+  - <ins>**Slices**</ins> are a feature introduced by Redux Toolkit to group together related reducer logic and action creators for a specific part of the state. They encapsulate the reducer function and action creators for a particular slice of the state.
     - Slices help organize your Redux logic by grouping related reducer functions and action creators together.
     - They provide a convenient way to define reducer logic and generate action creators for specific parts of your application state.
     - By using slices, you can modularize your Redux codebase and make it easier to manage and maintain.
