@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addProductToCart } from "../../redux/features/cart/cartSlice";
-import { IProducts, IProduct } from "../../interfaces/IProduct";
+import { addProductToCart } from "@redux/features/cart/cartSlice";
+import { IProducts, IProduct } from "@/interfaces/IProduct";
 
 interface CardProps {
   products: IProducts;

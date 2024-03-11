@@ -4,14 +4,14 @@ import {
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 import axios from "axios";
-import axiosInstance from "../../../services/axiosInstance";
+import axiosInstance from "@services/axiosInstance";
 import {
   ILoadingState,
   IProducts,
   IProduct,
   IFilteredProductsState,
-} from "../../../interfaces/IProduct";
-import { IError } from "../../../interfaces/IError";
+} from "@/interfaces/IProduct";
+import { IError } from "@/interfaces/IError";
 
 const initialState: IFilteredProductsState = {
   initFilteredProducts: {

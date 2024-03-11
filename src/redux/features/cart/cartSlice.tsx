@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IProduct } from "../../../interfaces/IProduct";
+import { IProduct } from "@/interfaces/IProduct";
 
 const initialState: Array<IProduct> = [];
 

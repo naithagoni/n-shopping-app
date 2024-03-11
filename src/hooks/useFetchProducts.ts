@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { AxiosError } from "axios";
 import useAbortController from "./useAbortController";
-import axiosInstance from "../services/axiosInstance";
-import { IProducts } from "../interfaces/IProduct";
+import axiosInstance from "@services/axiosInstance";
+import { IProducts } from "@/interfaces/IProduct";
 
 const useFetchProducts = () => {
   const [products, setProducts] = useState<IProducts>();

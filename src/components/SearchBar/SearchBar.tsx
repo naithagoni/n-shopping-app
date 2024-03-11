@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../redux/store";
+import { AppDispatch } from "@redux/store";
 import {
   fetchFilteredProducts,
   selectFilteredProducts,
-} from "../../redux/features/products/filteredProductsSlice";
-import { IProduct, IProducts } from "../../interfaces/IProduct";
-import useDebounce from "../../hooks/useDebounce";
+} from "@redux/features/products/filteredProductsSlice";
+import { IProduct, IProducts } from "@/interfaces/IProduct";
+import useDebounce from "@hooks/useDebounce";
 
 const SearchBar = () => {
   const dispatch: AppDispatch = useDispatch();

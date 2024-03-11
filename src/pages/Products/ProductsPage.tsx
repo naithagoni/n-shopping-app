@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProducts,
   selectProducts,
-} from "../../redux/features/products/productsSlice";
-// import useFetchProducts from "../../hooks/useFetchProducts";
-import { AppDispatch } from "../../redux/store";
-import Card from "../../components/Card/Card";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import ErrorPage from "../ErrorPage/ErrorPage";
-import { ILoadingState, IProducts } from "../../interfaces/IProduct";
-import { IError } from "../../interfaces/IError";
+} from "@redux/features/products/productsSlice";
+// import useFetchProducts from "@hooks/useFetchProducts";
+import { AppDispatch } from "@redux/store";
+import Card from "@components/Card/Card";
+import LoadingSpinner from "@components/LoadingSpinner/LoadingSpinner";
+import ErrorPage from "@pages/ErrorPage/ErrorPage";
+import { ILoadingState, IProducts } from "@/interfaces/IProduct";
+import { IError } from "@/interfaces/IError";
 
 const ProductsPage = () => {
   // const { products, error, isLoading } = useFetchProducts();

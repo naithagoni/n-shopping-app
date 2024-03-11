@@ -1,4 +1,4 @@
-import { IError } from "../../interfaces/IError";
+import { IError } from "@/interfaces/IError";
 
 interface ErrorPageProps {
   error: IError;
