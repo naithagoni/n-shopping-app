@@ -7,11 +7,11 @@ import {
 } from "@redux/features/products/productsSlice";
 // import useFetchProducts from "@hooks/useFetchProducts";
 import { AppDispatch } from "@redux/store";
-import Card from "@components/Card/Card";
 import LoadingSpinner from "@components/LoadingSpinner/LoadingSpinner";
 import ErrorPage from "@pages/ErrorPage/ErrorPage";
 import { ILoadingState, IProducts } from "@/interfaces/IProduct";
 import { IError } from "@/interfaces/IError";
+import ProductCard from "./ProductsCard";
 
 const ProductsPage = () => {
   // const { products, error, isLoading } = useFetchProducts();
@@ -39,7 +39,11 @@ const ProductsPage = () => {
   }
 
   return (
-    <>{loading === ILoadingState.SUCCESS && <Card products={products} />}</>
+    <>
+      {loading === ILoadingState.SUCCESS && (
+        <ProductCard products={products.products} />
+      )}
+    </>
   );
 };
 
