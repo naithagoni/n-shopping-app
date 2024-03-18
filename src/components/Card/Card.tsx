@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { addProductToCart } from "@redux/features/cart/cartSlice";
 import { IProducts, IProduct } from "@/interfaces/IProduct";
+import Button from "../Button/Button";
 
 interface CardProps {
   products: IProducts;
@@ -30,22 +31,10 @@ const Card: React.FC<CardProps> = ({ products }) => {
             key={product.id}
             className="card glass bg-base-100 shadow-xl indicator w-auto"
           >
-            <button className="btn btn-ghost indicator-item translate-x-0 translate-y-0 hover:bg-transparent">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-            </button>
+            <Button
+              classes="btn btn-ghost indicator-item translate-x-0 translate-y-0 hover:bg-transparent"
+              hasIcon={true}
+            />
             {/* <span className="indicator-item badge badge-secondary">new</span> */}
             <div className="carousel rounded-box rounded-b-none w-full">
               {product.images.map((image, imageIndex) => {
@@ -109,12 +98,11 @@ const Card: React.FC<CardProps> = ({ products }) => {
                 </span>
               </div>
               <div className="card-actions">
-                <button
-                  className="btn btn-primary w-full rounded-md"
+                <Button
+                  title="Add to bag"
+                  classes="btn btn-primary w-full rounded-md"
                   onClick={() => addToBag(product)}
-                >
-                  Add to bag
-                </button>
+                />
               </div>
             </div>
           </div>

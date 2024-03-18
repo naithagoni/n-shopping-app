@@ -7,6 +7,7 @@ import {
 } from "@redux/features/products/filteredProductsSlice";
 import { IProduct, IProducts } from "@/interfaces/IProduct";
 import useDebounce from "@hooks/useDebounce";
+import Button from "../Button/Button";
 
 const SearchBar = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -90,7 +91,7 @@ const SearchBar = () => {
           <option>Action</option>
         </select>
         <div>
-          <button className="btn rounded-md join-item">Search</button>
+          <Button title="Search" classes="btn rounded-md join-item" />
         </div>
       </div>
     </>

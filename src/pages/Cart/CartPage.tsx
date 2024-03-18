@@ -6,6 +6,7 @@ import {
   incrementQty,
   removeProductFromCart,
 } from "@redux/features/cart/cartSlice";
+import Button from "@/components/Button/Button";
 
 const CartPage = () => {
   const products = useSelector((state: RootState) => state.cartStore);
@@ -106,13 +107,12 @@ const CartPage = () => {
                         <div className="flex flex-1 items-end justify-between text-sm mt-4">
                           <p className="text-gray-500">Qty: 1</p>
                           <div className="flex">
-                            <button
+                            <Button
                               type="button"
-                              className="font-medium text-indigo-600 hover:text-indigo-500"
                               onClick={() => removeProduct(product.id)}
-                            >
-                              Remove
-                            </button>
+                              title="Remove"
+                              classes="font-medium text-indigo-600 hover:text-indigo-500"
+                            />
                           </div>
                         </div>
                       </div>
