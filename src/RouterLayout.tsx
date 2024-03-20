@@ -22,7 +22,7 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.tsx";
 // ]);
 const router = createBrowserRouter([
   {
-    path: "",
+    path: "/",
     element: <App />,
     children: [
       { path: "/", element: <HomePage /> },

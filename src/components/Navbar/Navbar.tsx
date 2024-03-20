@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar bg-base-100 z-100 shadow-xl fixed">
+      <nav className="navbar bg-base-100 z-100 shadow-xl fixed top-0 bg-transparent backdrop-blur">
         <NavLink
           to="/"
           className="btn btn-ghost text-xl logo-class hover:bg-transparent"
